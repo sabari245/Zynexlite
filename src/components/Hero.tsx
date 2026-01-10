@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
 
 const Hero = () => {
+    const [isPlaying, setIsPlaying] = useState(false);
+
     return (
         <section style={{
             minHeight: '100vh',
@@ -81,13 +84,67 @@ const Hero = () => {
                     transition={{ duration: 1, delay: 0.3 }}
                     style={{ position: 'relative', width: '100%', maxWidth: '1000px' }}
                 >
-                    <div style={{
-                        width: '100%',
-                        height: 'clamp(300px, 50vw, 600px)',
-                        background: 'url("/assets/hero.png") center/cover',
-                        borderRadius: '2px',
-                        boxShadow: '0 40px 80px rgba(0,0,0,0.1)'
-                    }} />
+                    <div
+                        onClick={() => setIsPlaying(true)}
+                        style={{
+                            width: '100%',
+                            height: 'clamp(300px, 50vw, 600px)',
+                            borderRadius: '2px',
+                            boxShadow: '0 40px 80px rgba(0,0,0,0.1)',
+                            overflow: 'hidden',
+                            position: 'relative',
+                            cursor: isPlaying ? 'default' : 'pointer',
+                            background: '#000'
+                        }}
+                    >
+                        {!isPlaying ? (
+                            <>
+                                <div style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    background: 'url("/assets/hero.png") center/cover',
+                                    transition: 'transform 0.5s ease'
+                                }} className="hero-image-hover" />
+                                <div style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%',
+                                    background: 'rgba(0,0,0,0.2)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    transition: 'background 0.3s ease'
+                                }} className="hero-overlay-hover">
+                                    <div style={{
+                                        width: '80px',
+                                        height: '80px',
+                                        borderRadius: '50%',
+                                        background: 'var(--accent)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        boxShadow: '0 0 40px rgba(139, 115, 91, 0.6)',
+                                        transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                                    }} className="play-btn-hover">
+                                        <Play fill="white" color="white" size={32} style={{ marginLeft: '4px' }} />
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <video
+                                src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-walking-on-the-street-41257-large.mp4"
+                                autoPlay
+                                controls
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover'
+                                }}
+                            />
+                        )}
+                    </div>
                     <div style={{
                         position: 'absolute',
                         bottom: '-30px',
@@ -96,15 +153,29 @@ const Hero = () => {
                         padding: '30px',
                         boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
                         maxWidth: '250px',
-                        textAlign: 'left'
+                        textAlign: 'left',
+                        zIndex: 2
                     }}>
                         <div style={{ fontSize: '2rem', fontWeight: 700, fontFamily: 'var(--font-display)', color: 'var(--accent)' }}>30 Days</div>
                         <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Guaranteed Launch</div>
                     </div>
                 </motion.div>
             </div>
+            <style>{`
+                .hero-image-hover:hover {
+                    transform: scale(1.05);
+                }
+                .hero-overlay-hover:hover {
+                    background: rgba(0,0,0,0.1) !important;
+                }
+                .hero-overlay-hover:hover .play-btn-hover {
+                    transform: scale(1.1);
+                    background: var(--accent-hover) !important;
+                }
+            `}</style>
         </section>
     );
 };
 
 export default Hero;
+
