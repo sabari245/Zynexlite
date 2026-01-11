@@ -18,7 +18,7 @@ const caseStudies = [
             "Reduced recurring costs to ₹0 in platform fees",
             "Enabled direct-to-customer sales and future scalability"
         ],
-        image: "/assets/lepaa_mockup.png",
+        image: "/assets/lepaa_mockup.webp",
         reverse: false
     },
     {
@@ -36,7 +36,7 @@ const caseStudies = [
             "Faster customer inquiries",
             "Strong foundation for SEO-driven growth"
         ],
-        image: "/assets/synergys_mockup.png",
+        image: "/assets/synergys_mockup.webp",
         reverse: true
     }
 ];

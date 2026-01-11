@@ -20,7 +20,7 @@ const HowItWorks = () => {
     ];
 
     return (
-        <section id="how-it-works">
+        <section id="how-it-works" style={{ background: 'var(--bg-secondary)' }}>
             <div className="container">
                 <h2 className="section-title">How it works</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center', marginTop: '80px' }}>
@@ -41,7 +41,7 @@ const HowItWorks = () => {
                                 <div style={{
                                     fontSize: '3rem',
                                     fontFamily: 'var(--font-display)',
-                                    color: 'var(--border)',
+                                    color: 'var(--accent)',
                                     lineHeight: 1
                                 }}>{step.number}</div>
                                 <div>
